@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Hello with Promise</title>
+	<script type="text/javascript">
+		window.onload = function(){
+			var btn = document.getElementById('btn');
+			btn.addEventListener('click', function(e){
+				e.preventDefault();
+				//alert("Button clicked");
+				var promise = new Promise(function(resolve, reject){
+					var xmlhttp = new XMLHttpRequest();
+					xmlhttp.open('GET', 'https://api.github.com/users/torvalds/followers', true);
+					xmlhttp.onreadystatechange = function(){
+						if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+							//alert(xmlhttp.responseText.length); 
+							if(Array.isArray(JSON.parse(xmlhttp.responseText))){
+								//alert(JSON.parse(xmlhttp.responseText).length);
+								var followers = JSON.parse(xmlhttp.responseText);
+								//alert(followers.length);
+								resolve(followers);
+							}
+						}else
+						{
+							let error =  JSON.parse(xmlhttp.statusText);
+							reject(error);
+						}
+					}
+					xmlhttp.send(null);
+				});
+
+				promise.then(function(followers){
+					var pics = document.getElementById('img').innerHTML = "";
+					//alert(followers[0].login);
+					followers.forEach(function(follower){
+							var pics = document.getElementById('img');
+							var img = document.createElement('img');
+							img.setAttribute('src', follower.avatar_url);
+							img.setAttribute('width', '200px');
+							img.setAttribute('height', '200px');
+							pics.appendChild(img);
+							//alert(follower.login);
+					});
+
+				}).catch(function(x){
+					alert("Failed");
+				});
+
+
+			});
+
+			
+		}
+
+
+	</script>
+</head>
+<body>
+
+<button id="btn"> Click me </button>
+<div id="user">
+	<p>Github info</p>
+	<div id="img">
+		
+	</div>
+	
+</div>
+</body>
+</html>
