@@ -9,7 +9,7 @@
 				e.preventDefault();
 				var promise = new Promise(function(resolve, reject){
 					var xmlhttp = new XMLHttpRequest();
-					xmlhttp.open('GET', 'https://api.github.com/users/torvalds/followers', true);
+					xmlhttp.open('GET', 'https://api.github.com/users/ch3nkula/followers', true);
 					xmlhttp.onreadystatechange = function(){
 						if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
 							if(Array.isArray(JSON.parse(xmlhttp.responseText))){
@@ -34,7 +34,10 @@
 							img.setAttribute('src', follower.avatar_url);
 							img.setAttribute('width', '200px');
 							img.setAttribute('height', '200px');
-							pics.appendChild(img);
+							var link = document.createElement('a');
+							link.setAttribute('href', 'http://github.com/'+follower.login);
+							link.appendChild(img);
+							pics.appendChild(link);		
 					});
 
 				}).catch(function(x){
