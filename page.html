@@ -7,17 +7,13 @@
 			var btn = document.getElementById('btn');
 			btn.addEventListener('click', function(e){
 				e.preventDefault();
-				//alert("Button clicked");
 				var promise = new Promise(function(resolve, reject){
 					var xmlhttp = new XMLHttpRequest();
 					xmlhttp.open('GET', 'https://api.github.com/users/torvalds/followers', true);
 					xmlhttp.onreadystatechange = function(){
 						if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-							//alert(xmlhttp.responseText.length); 
 							if(Array.isArray(JSON.parse(xmlhttp.responseText))){
-								//alert(JSON.parse(xmlhttp.responseText).length);
 								var followers = JSON.parse(xmlhttp.responseText);
-								//alert(followers.length);
 								resolve(followers);
 							}
 						}else
@@ -31,7 +27,7 @@
 
 				promise.then(function(followers){
 					var pics = document.getElementById('img').innerHTML = "";
-					//alert(followers[0].login);
+					
 					followers.forEach(function(follower){
 							var pics = document.getElementById('img');
 							var img = document.createElement('img');
@@ -39,7 +35,6 @@
 							img.setAttribute('width', '200px');
 							img.setAttribute('height', '200px');
 							pics.appendChild(img);
-							//alert(follower.login);
 					});
 
 				}).catch(function(x){
@@ -47,12 +42,8 @@
 				});
 
 
-			});
-
-			
+			});			
 		}
-
-
 	</script>
 </head>
 <body>
