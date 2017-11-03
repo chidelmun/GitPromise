@@ -5,10 +5,10 @@ In this project, I am making an asynchronous request to the Github V3 API and re
 
 ```javascript
   window.onload = function(){
-			var btn = document.getElementById('btn');
-			btn.addEventListener('click', function(e){
-				e.preventDefault();
-				var promise = new Promise(function(resolve, reject){
+	var btn = document.getElementById('btn');
+	btn.addEventListener('click', function(e){
+		e.preventDefault();
+			var promise = new Promise(function(resolve, reject){
 					var xmlhttp = new XMLHttpRequest();
 					xmlhttp.open('GET', 'https://api.github.com/users/torvalds/followers', true);
 					xmlhttp.onreadystatechange = function(){
