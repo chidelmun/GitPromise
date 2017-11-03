@@ -9,7 +9,7 @@ app.get('/', function(req, res) {
   console.log(__dirname);
   res.status(200);
   res.setHeader('Content-type', 'text/html');
-  return res.sendFile(__dirname + '/page.html');
+  return res.sendFile(__dirname + '/index.html');
 });
 
 

@@ -9,7 +9,7 @@
 				e.preventDefault();
 				var promise = new Promise(function(resolve, reject){
 					var xmlhttp = new XMLHttpRequest();
-					xmlhttp.open('GET', 'https://api.github.com/users/ch3nkula/followers', true);
+					xmlhttp.open('GET', 'https://api.github.com/users/torvalds/followers', true);
 					xmlhttp.onreadystatechange = function(){
 						if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
 							if(Array.isArray(JSON.parse(xmlhttp.responseText))){
